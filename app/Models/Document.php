@@ -51,6 +51,36 @@ class Document extends Model
         //'document_status_id' => DocumentStatus::class,
     ];
 
+    public function scopeWithMinimalRelations($query)
+    {
+        return $query->with([
+            'paymentSort:id,name',
+            'documentStatus:id,name,public_name',
+            'customer:id,name,phone',
+        ]);
+    }
+
+    public function scopeForListing($query)
+    {
+        return $query->select([
+            'id',
+            'document_number',
+            'order_number',
+            'document_status_id',
+            'customer_id',
+            'customer_name',
+            'customer_phone',
+            'customer_nick',
+            'items_search',
+            'issued_at',
+            'grand_amount',
+            'currency_code',
+            'payment_sort_id',
+            'is_cod',
+            'created_at',
+        ])->withMinimalRelations();
+    }
+
     public function items() : HasMany {
         return $this->hasMany(DocumentItem::class);
     }

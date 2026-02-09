@@ -28,32 +28,38 @@ class DocumentResource extends Resource
 
 
 
+    // public static function getEloquentQuery(): Builder
+    // {
+    //     return parent::getEloquentQuery()
+    //         ->where('document_type_id', 1)
+    //         ->select([
+    //             'id',
+    //             'document_type_id',
+    //             'document_status_id',
+    //             'payment_sort_id',
+    //             'customer_id',
+    //             'document_number',
+    //             'customer_name',
+    //             'customer_nick',
+    //             'items_search',
+    //             'customer_phone',
+    //             'customer_address',
+    //             'grand_amount',
+    //             'issued_at',
+    //             'created_at',
+    //         ])
+    //         ->with([
+    //             'paymentSort:id,name',          // include fields you display
+    //             'documentStatus:id,name',
+    //             'customer:id,name,nick',
+    //             'bankStatementBanks:id,name', // example; tailor it
+    //         ]);
+    // }
     public static function getEloquentQuery(): Builder
     {
         return parent::getEloquentQuery()
-            ->where('document_type_id', 1)
-            ->select([
-                'id',
-                'document_type_id',
-                'document_status_id',
-                'payment_sort_id',
-                'customer_id',
-                'document_number',
-                'customer_name',
-                'customer_nick',
-                'items_search',
-                'customer_phone',
-                'customer_address',
-                'grand_amount',
-                'issued_at',
-                'created_at',
-            ])
-            ->with([
-                'paymentSort:id,name',          // include fields you display
-                'documentStatus:id,name',
-                'customer:id,name,nick',
-                'bankStatementBanks:id,name', // example; tailor it
-            ]);
+            ->forListing()
+            ->where('document_type_id', 1);
     }
 
 
