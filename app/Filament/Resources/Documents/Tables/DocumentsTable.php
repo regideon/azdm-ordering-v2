@@ -42,19 +42,25 @@ class DocumentsTable
                     ->weight(FontWeight::Bold)
                     ->toggleable(),
 
-                // TextColumn::make('items_search')
-                //     ->limit(40)
-                //     ->searchable()
-                //     ->weight(FontWeight::Bold)
-                //     ->label('Items'),
+                TextColumn::make('items_search')
+                    ->limit(40)
+                    ->searchable()
+                    ->weight(FontWeight::Bold)
+                    ->label('Items'),
+            
                 TextColumn::make('items_search')
                     ->label('Items')
-                    ->searchable(query: function (\Illuminate\Database\Eloquent\Builder $query, string $search): \Illuminate\Database\Eloquent\Builder {
-                        // Use more efficient search with left-anchored pattern
-                        return $query->where('items_search', 'like', $search . '%');
+                    // FULLTEXT search implementation using MATCH AGAINST
+                    ->searchable(query: function (\Illuminate\Database\Eloquent\Builder $query, string $search) {
+                        return $query->whereRaw(
+                            'MATCH(items_search) AGAINST (? IN BOOLEAN MODE)',
+                            [$search . '*']
+                        );
                     })
                     ->limit(40)
                     ->toggleable(),
+
+                
 
 
 
