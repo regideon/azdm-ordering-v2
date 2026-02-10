@@ -19,6 +19,7 @@ class DocumentsTable
     public static function configure(Table $table): Table
     {
         return $table
+            ->searchOnBlur()
             ->columns([
                 TextColumn::make('document_number')
                     ->label('Order Number')
@@ -42,11 +43,11 @@ class DocumentsTable
                     ->weight(FontWeight::Bold)
                     ->toggleable(),
 
-                TextColumn::make('items_search')
-                    ->limit(40)
-                    ->searchable()
-                    ->weight(FontWeight::Bold)
-                    ->label('Items'),
+                // TextColumn::make('items_search')
+                //     ->limit(40)
+                //     ->searchable()
+                //     ->weight(FontWeight::Bold)
+                //     ->label('Items'),
             
                 TextColumn::make('items_search')
                     ->label('Items')
