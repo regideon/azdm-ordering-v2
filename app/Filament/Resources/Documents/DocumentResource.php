@@ -33,20 +33,44 @@ class DocumentResource extends Resource
         return parent::getEloquentQuery()
             ->where('document_type_id', 1)
             ->select([
+                // Primary
                 'id',
+
+                // Core document fields
                 'document_type_id',
                 'document_status_id',
                 'payment_sort_id',
                 'customer_id',
                 'document_number',
+                'tracking_number',
+
+                // Customer snapshot fields
                 'customer_name',
                 'customer_nick',
-                'items_search',
                 'customer_phone',
                 'customer_address',
+
+                // Search / computed
+                'items_search',
+
+                // Amounts
+                'grand_subtotal',
                 'grand_amount',
+
+                'notes',
+
+                // Dates
                 'issued_at',
+                'due_at',
                 'created_at',
+                'updated_at',
+
+                // Soft deletes (CRITICAL)
+                'deleted_at',              
+
+                'created_name',
+                'updated_name',
+
             ])
             ->with([
                 'paymentSort:id,name',          // include fields you display

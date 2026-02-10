@@ -31,7 +31,6 @@ class DocumentsTable
                     ->label('Customer')
                     ->limit(20)
                     ->tooltip(fn ($state) => $state)
-                    ->searchable()
                     ->sortable()
                     ->toggleable(),
 
@@ -71,14 +70,8 @@ class DocumentsTable
 
                 TextColumn::make('grand_amount')
                     ->label('Total Price')
-                    ->searchable()
                     ->toggleable()
                     ->prefix('₱'),
-                    // ->summarize([
-                    //     Tables\Columns\Summarizers\Sum::make(),
-                    //         // ->money(),
-                    // ]),
-
 
                 TextColumn::make('issued_at')
                     ->label('Order Date') // Invoice Date
@@ -100,9 +93,7 @@ class DocumentsTable
                         'BPI' => 'warning',
                         'PAYPAL' => 'gray',
                         default => 'primary', // Default color if no match
-                    })
-                    ->sortable(false)
-                    ->searchable(false),
+                    }),
                 
 
                 TextColumn::make('documentStatus.name')
