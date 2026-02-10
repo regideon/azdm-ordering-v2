@@ -26,9 +26,7 @@ header.fi-sidebar-header {
     background-color: oklch(0.382 0.244 272.151 / 0.12); /* subtle 12% tint */
     border-radius: 6px; /* optional: smoother UI */
 }
-.fi-icon-btn {
-    color: #0000df !important;
-}
+
 /* ---------------------------------------------------------
    LIGHT MODE — Neon Blue-Violet Corporate (OKLCH primary)
 --------------------------------------------------------- */
@@ -85,12 +83,10 @@ header.fi-sidebar-header {
 }
 
 .fi-logo {
-    /* color: #fff; */
-    /* height: 2rem !important; */
-    height: 3.2rem !important;
+    height: 1.5rem !important;
 }
 .fi-icon-btn {
-    color: #bfbfd4;
+    color: #deac38;
 }
 .fi-topbar-item.fi-active .fi-topbar-item-btn {
     background-color: rgba(250, 250, 250, 0.7);

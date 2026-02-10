@@ -24,7 +24,7 @@ class DocumentResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'document_number';
+    // protected static ?string $recordTitleAttribute = 'document_number';
 
 
 

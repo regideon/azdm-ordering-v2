@@ -34,10 +34,12 @@ class ZpanelPanelProvider extends PanelProvider
             
             ->profile(isSimple: false)
             ->sidebarCollapsibleOnDesktop()
-            // ->assets([
-            //     \Filament\Support\Assets\Css::make('custom-stylesheet', asset('css/app/custom-stylesheet.css')),
-            //     \Filament\Support\Assets\Css::make('custom-stylesheet-fontawesome-all.min', asset('css/app/custom-stylesheet-fontawesome-all.min.css')),
-            // ])
+            ->assets([
+                \Filament\Support\Assets\Css::make('custom-stylesheet', asset('css/app/custom-stylesheet.css')),
+                \Filament\Support\Assets\Css::make('custom-stylesheet-fontawesome-all.min', asset('css/app/custom-stylesheet-fontawesome-all.min.css')),
+            ])
+
+            ->brandLogo(asset('images/maddox-new-logo-horizontal.png'))
 
             ->colors([
                 'primary' => Color::Amber,
