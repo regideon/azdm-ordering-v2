@@ -918,7 +918,7 @@ class DocumentForm
                                                 ->text(fn (Document $record) => 'Created at<br /> <b>' . $record->created_at?->diffForHumans() . '</b>'),
 
                                             InfoField::make('ph_created_name')
-                                                ->text(fn (Document $record) => 'Last modified by<br /> <b>' . $record->created_name . '</b>'),
+                                                ->text(fn (Document $record) => 'Last modified by<br /> <b>' . $record->updated_name . '</b>'),
 
                                             InfoField::make('ph_cupdated_at')
                                                 ->text(fn (Document $record) => 'Last modified at<br /> <b>' . $record->updated_at?->diffForHumans() . '</b>'),
