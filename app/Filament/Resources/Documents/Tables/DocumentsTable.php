@@ -137,16 +137,14 @@ class DocumentsTable
                     ->badge(),
 
 
-
-
-                // TextColumn::make('created_at')
-                //     ->dateTime()
-                //     ->sortable()
-                //     ->toggleable(isToggledHiddenByDefault: true),
-                // TextColumn::make('updated_at')
-                //     ->dateTime()
-                //     ->sortable()
-                //     ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
           
                 
             ])
@@ -156,7 +154,17 @@ class DocumentsTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
+                // \Filament\Actions\Action::make('viewUser')
+                //     ->schema([
+                //     ]),
+
+                ViewAction::make()
+                    ->modal()
+                    ->modalHeading('View Order')
+                    ->modalSubmitAction(false)
+                    ->modalCancelActionLabel('Close')
+                    ->modalWidth('5xl'),
+
                 EditAction::make(),
             ])
             ->toolbarActions([
