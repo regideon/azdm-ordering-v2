@@ -40,6 +40,7 @@ class ZpanelPanelProvider extends PanelProvider
             ])
 
             ->brandLogo(asset('images/maddox-new-logo-horizontal.png'))
+            ->favicon(asset('images/favicon.ico'))
 
             ->colors([
                 'primary' => Color::Amber,

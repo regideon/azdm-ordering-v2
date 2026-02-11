@@ -60,14 +60,10 @@ class DocumentsTable
                     })
                     ->limit(40)
                     ->toggleable(),
-
-                
-
-
-
                 
                 TextColumn::make('customer_phone')
                     ->label('Customer phone')
+                    ->limit(12)
                     ->toggleable(),
 
                 TextColumn::make('customer_address')
@@ -88,65 +84,69 @@ class DocumentsTable
 
                 TextColumn::make('paymentSort.name')
                     ->label('COD')
-                    ->toggleable(),
+                    ->toggleable()
+                    ->color('primary')
+                    ->badge(),
 
                 TextColumn::make('banks')
                     ->label('Banks')
                     ->state(fn ($record) => $record->bankStatementBanks->pluck('name')->all()) // array
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'BDO' => 'primary',
-                        'CHINABANK' => 'danger',
-                        'BPI' => 'warning',
-                        'PAYPAL' => 'gray',
-                        default => 'primary', // Default color if no match
-                    }),
+                    // ->color(fn (string $state): string => match ($state) {
+                    //     'BDO' => 'primary',
+                    //     'CHINABANK' => 'danger',
+                    //     'BPI' => 'warning',
+                    //     'PAYPAL' => 'gray',
+                    //     default => 'primary', // Default color if no match
+                    // })
+                    ->color('primary')
+                    ->badge(),
                 
 
                 TextColumn::make('documentStatus.name')
                     ->label('Status')
-                    ->badge()
-                    ->color(fn (string $state): string => match ($state) {
-                        'new' => 'gray',
-                        'processing' => 'primary',
-                        'paid' => 'success',
-                        'released' => 'success',
-                        'qc checked' => 'success',
-                        'packed and ready to ship' => 'success',
-                        'out for delivery' => 'success',
+                    // ->color(fn (string $state): string => match ($state) {
+                    //     'new' => 'gray',
+                    //     'processing' => 'primary',
+                    //     'paid' => 'success',
+                    //     'released' => 'success',
+                    //     'qc checked' => 'success',
+                    //     'packed and ready to ship' => 'success',
+                    //     'out for delivery' => 'success',
 
-                        'order received' => 'primary',
-                        'reschedule delivery' => 'warning',
-                        'unsuccessful delivery attempt' => 'danger',
+                    //     'order received' => 'primary',
+                    //     'reschedule delivery' => 'warning',
+                    //     'unsuccessful delivery attempt' => 'danger',
 
-                        'delivered' => 'success',
+                    //     'delivered' => 'success',
 
-                        'partial delivery' => 'danger',
-                        'partial payments' => 'warning',
+                    //     'partial delivery' => 'danger',
+                    //     'partial payments' => 'warning',
 
-                        'cancelled' => 'warning',
-                        'returns' => 'warning',
-                        'refunds' => 'warning',
+                    //     'cancelled' => 'warning',
+                    //     'returns' => 'warning',
+                    //     'refunds' => 'warning',
 
-                        'out for shipping' => 'success',
+                    //     'out for shipping' => 'success',
 
-                        'on-hold' => 'danger',
-                        'cash on delivery' => 'success',
+                    //     'on-hold' => 'danger',
+                    //     'cash on delivery' => 'success',
 
-                        'shipped' => 'success',
-                    }),
+                    //     'shipped' => 'success',
+                    // })
+                    ->color('primary')
+                    ->badge(),
 
 
 
 
-                TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                // TextColumn::make('created_at')
+                //     ->dateTime()
+                //     ->sortable()
+                //     ->toggleable(isToggledHiddenByDefault: true),
+                // TextColumn::make('updated_at')
+                //     ->dateTime()
+                //     ->sortable()
+                //     ->toggleable(isToggledHiddenByDefault: true),
           
                 
             ])

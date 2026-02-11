@@ -22,7 +22,7 @@ class DocumentResource extends Resource
 {
     protected static ?string $model = Document::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedShoppingCart;
 
     // protected static ?string $recordTitleAttribute = 'document_number';
 
@@ -30,8 +30,7 @@ class DocumentResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
-        return parent::getEloquentQuery()
-            ->where('document_type_id', 1)
+        return parent::getEloquentQuery()            
             ->with([
                 'paymentSort:id,name',
                 'documentStatus:id,name',
@@ -53,6 +52,7 @@ class DocumentResource extends Resource
                 'customer_id',
                 'document_number',
                 'tracking_number',
+                'order_number',
 
                 // Customer snapshot fields
                 'customer_name',
