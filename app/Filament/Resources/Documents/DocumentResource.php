@@ -32,71 +32,68 @@ class DocumentResource extends Resource
     {
         return parent::getEloquentQuery()
             ->where('document_type_id', 1)
+            ->with([
+                'paymentSort:id,name',
+                'documentStatus:id,name',
+                'customer:id,name,nick',
+                'bankStatementBanks:id,name',
+            ]);
+
+        /*    
+        return parent::getEloquentQuery()
+            ->where('document_type_id', 1)
             ->select([
+                // Primary
                 'id',
+
+                // Core document fields
                 'document_type_id',
                 'document_status_id',
                 'payment_sort_id',
+                'customer_id',
                 'document_number',
+                'tracking_number',
+
+                // Customer snapshot fields
                 'customer_name',
                 'customer_nick',
-                'items_search',
                 'customer_phone',
                 'customer_address',
+
+                // Search / computed
+                'items_search',
+
+                'notes',
+
+                // Amounts
+                'grand_subtotal',
                 'grand_amount',
+
+                // Dates
                 'issued_at',
+                'due_at',
                 'created_at',
+                'updated_at',
+                'return_at',
+                'refunded_at',
+
+                // Soft deletes (CRITICAL)
                 'deleted_at',
                 
-                // // Primary
-                // 'id',
+                'attachments',
+                'attachments_qc',
+                'attachments_packing',
+                'attachments_clerk',
+                'document_shipment_type_id',
+                'notes_clerk',
+                'ship_at',
+                'attachments_delivery',
+                'notes_delivery',
+                'attachments_orderchecker',
+                'notes_orderchecker',
 
-                // // Core document fields
-                // 'document_type_id',
-                // 'document_status_id',
-                // 'payment_sort_id',
-                // 'customer_id',
-                // 'document_number',
-                // 'tracking_number',
-
-                // // Customer snapshot fields
-                // 'customer_name',
-                // 'customer_nick',
-                // 'customer_phone',
-                // 'customer_address',
-
-                // // Search / computed
-                // 'items_search',
-
-                // // Amounts
-                // 'grand_subtotal',
-                // 'grand_amount',
-
-                // 'notes',
-
-                // // Dates
-                // 'issued_at',
-                // 'due_at',
-                // 'created_at',
-                // 'updated_at',
-
-                // // Soft deletes (CRITICAL)
-                // 'deleted_at',
-                
-                // 'attachments',
-                // 'attachments_qc',
-                // 'attachments_packing',
-                // 'attachments_clerk',
-                // 'document_shipment_type_id',
-                // 'notes_clerk',
-                // 'ship_at',
-                // 'attachments_delivery',
-                // 'notes_delivery',
-                // 'attachments_orderchecker',
-                // 'notes_orderchecker',
-
-                // 'created_name',
-                // 'updated_name',
+                'created_name',
+                'updated_name',
 
             ])
             ->with([
@@ -105,16 +102,9 @@ class DocumentResource extends Resource
                 'customer:id,name,nick',
                 'bankStatementBanks:id,name', // example; tailor it
             ]);
+            */
     }
-    
-    // public static function getEloquentQuery(): Builder
-    // {
-    //     return parent::getEloquentQuery()
-    //         ->forListing()
-    //         ->where('document_type_id', 1);
-    // }
-
-
+  
 
     public static function getNavigationGroup(): ?string { return 'Sales'; }
     
