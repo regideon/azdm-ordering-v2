@@ -160,7 +160,7 @@ class DocumentsTable
 
                 ViewAction::make()
                     ->modal()
-                    ->modalHeading('View Order')
+                    ->modalHeading(fn ($record) => 'View '.$record->document_number)
                     ->modalSubmitAction(false)
                     ->modalCancelActionLabel('Close')
                     ->modalWidth('5xl'),

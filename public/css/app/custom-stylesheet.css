@@ -265,7 +265,7 @@ main.fi-simple-main.fi-width-lg {
     font-size: 0.975rem;
 }
 .fi-sc-component {
-    margin-top: -10px;
+    /* margin-top: -10px; */
 }
 
 span.fi-sc-text {

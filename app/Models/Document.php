@@ -130,7 +130,7 @@ class Document extends Model
 
     public function getImageUrlAttribute()
     {
-        return env('DO_SPACES_CDN_ENDPOINT') . '/' . $this->image;
+        return config('azdm.filesystem.spaces.cdn_endpoint') . '/' . $this->image;
     }
 
     public function customer() : BelongsTo {
@@ -252,7 +252,7 @@ class Document extends Model
         }
         
         $newIdStrPad = str_pad($newDocumentNumber, 7, "0", STR_PAD_LEFT);
-        $newDocumentNumber = env('PREFIX_INVOICE') . $newIdStrPad;
+        $newDocumentNumber = "INV-" . $newIdStrPad;
         return $newDocumentNumber;
     }
 
