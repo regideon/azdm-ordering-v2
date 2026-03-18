@@ -51,11 +51,42 @@ class DocumentsTable
             
                 TextColumn::make('items_search')
                     ->label('Items')
-                    // FULLTEXT search implementation using MATCH AGAINST
+                    // ->searchable()
+                    // ERROR IN "contains ( ) and /" in search
+                    // ->searchable(query: function (\Illuminate\Database\Eloquent\Builder $query, string $search) {
+                    //     return $query->whereRaw(
+                    //         'MATCH(items_search) AGAINST (? IN BOOLEAN MODE)',
+                    //         [$search . '*']
+                    //     );
+                    // })
+
+                    // FIX FOR ERROR IN "contains ( ) and /" in search
                     ->searchable(query: function (\Illuminate\Database\Eloquent\Builder $query, string $search) {
+
+                        // 1) Convert punctuation to spaces, keep letters/numbers only
+                        $clean = preg_replace('/[^\pL\pN\s]+/u', ' ', $search);
+                        $clean = trim(preg_replace('/\s+/u', ' ', $clean));
+
+                        // If empty after cleaning, don't filter
+                        if ($clean === '') {
+                            return $query;
+                        }
+
+                        // 2) Split into words and build a safe boolean query:
+                        // +word* means "must include word prefix"
+                        $boolean = collect(explode(' ', $clean))
+                            ->filter(fn ($w) => mb_strlen($w) >= 2)   // optional: ignore 1-letter noise
+                            ->map(fn ($w) => '+' . $w . '*')
+                            ->implode(' ');
+
+                        // If all tokens were removed (e.g. only 1-letter words), don't filter
+                        if ($boolean === '') {
+                            return $query;
+                        }
+
                         return $query->whereRaw(
                             'MATCH(items_search) AGAINST (? IN BOOLEAN MODE)',
-                            [$search . '*']
+                            [$boolean]
                         );
                     })
                     ->limit(40)
