@@ -21,7 +21,7 @@ class UserResource extends Resource
 
     public static function getNavigationSort(): ?int
     {
-        return 30;
+        return 400;
     }
 
     public static function getNavigationGroup(): ?string

@@ -21,7 +21,7 @@ class CategoryResource extends Resource
 
     public static function getNavigationSort(): ?int
     {
-        return 50;
+        return 500;
     }
 
     public static function getNavigationGroup(): ?string
